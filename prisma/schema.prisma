@@ -1,0 +1,86 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Admin {
+  id       Int      @id @default(autoincrement())
+  name     String
+  email    String   @unique
+  password String
+  role     String   @default("admin")
+  image    String?
+  posts    Post[]
+  books    Book[]
+  createdAt DateTime @default(now())
+}
+
+model Post {
+  id          Int      @id @default(autoincrement())
+  title       String
+  slug        String   @unique
+  content     String
+  excerpt     String?
+  image       String?
+  type        String   @default("text")
+  status      String   @default("published")
+  featured    Boolean  @default(false)
+  views       Int      @default(0)
+  categoryId  Int?
+  category    Category? @relation(fields: [categoryId], references: [id])
+  bookId      Int?
+  book        Book?    @relation(fields: [bookId], references: [id])
+  adminId     Int
+  admin       Admin    @relation(fields: [adminId], references: [id])
+  comments    Comment[]
+  likes       Like[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Book {
+  id          Int      @id @default(autoincrement())
+  title       String
+  slug        String   @unique
+  description String?
+  coverImage  String?
+  author      String?
+  pages       Int?
+  publishedAt DateTime?
+  adminId     Int
+  admin       Admin    @relation(fields: [adminId], references: [id])
+  posts       Post[]
+  createdAt   DateTime @default(now())
+}
+
+model Category {
+  id    Int    @id @default(autoincrement())
+  name  String
+  slug  String @unique
+  posts Post[]
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  content   String
+  author    String
+  email     String?
+  isApproved Boolean @default(false)
+  postId    Int
+  post      Post    @relation(fields: [postId], references: [id])
+  createdAt DateTime @default(now())
+}
+
+model Like {
+  id        Int      @id @default(autoincrement())
+  ipAddress String
+  postId    Int
+  post      Post    @relation(fields: [postId], references: [id])
+  createdAt DateTime @default(now())
+
+  @@unique([ipAddress, postId])
+}
