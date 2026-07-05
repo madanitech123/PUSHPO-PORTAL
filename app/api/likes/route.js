@@ -7,7 +7,7 @@ export async function GET(req) {
   if (!postId) return NextResponse.json({ error: 'postId required' }, { status: 400 });
 
   const count = await prisma.like.count({ where: { postId } });
-  const ip = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || '0.0.0.0';
+  const ip = (req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || '0.0.0.0').split(',')[0].trim();
   const userLiked = await prisma.like.findUnique({ where: { ipAddress_postId: { ipAddress: ip, postId } } });
 
   return NextResponse.json({ count, userLiked: !!userLiked });
@@ -16,7 +16,7 @@ export async function GET(req) {
 export async function POST(req) {
   try {
     const { postId } = await req.json();
-    const ip = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || '0.0.0.0';
+    const ip = (req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || '0.0.0.0').split(',')[0].trim();
 
     const existing = await prisma.like.findUnique({ where: { ipAddress_postId: { ipAddress: ip, postId: parseInt(postId) } } });
     if (existing) {
