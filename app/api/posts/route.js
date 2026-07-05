@@ -15,8 +15,8 @@ export async function GET(req) {
 
   const where = {};
   if (category) where.category = { slug: category };
-  if (status) where.status = status;
-  else where.status = 'published';
+  if (status && status !== 'all') where.status = status;
+  if (!status) where.status = 'published';
   if (featured) where.featured = true;
   if (q) where.OR = [{ title: { contains: q } }, { content: { contains: q } }];
 

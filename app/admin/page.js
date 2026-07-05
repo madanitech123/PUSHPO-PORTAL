@@ -9,7 +9,7 @@ export default function AdminDashboard() {
   useEffect(() => {
     Promise.all([
       fetch('/api/posts?status=draft&limit=1').then(r => r.json()),
-      fetch('/api/posts?limit=1').then(r => r.json()),
+      fetch('/api/posts?status=all&limit=1').then(r => r.json()),
       fetch('/api/comments?approved=false').then(r => r.json()),
       fetch('/api/comments?approved=true').then(r => r.json()),
     ]).then(([d, a, pc, ac]) => setStats({ totalPosts: a.total || 0, draftPosts: d.total || 0, pendingComments: pc.total || 0, totalComments: ac.total || 0 }));
