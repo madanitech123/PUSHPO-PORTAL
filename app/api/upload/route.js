@@ -16,10 +16,14 @@ export const POST = requireAdmin(async (req) => {
 
     const buffer = Buffer.from(await file.arrayBuffer());
     const result = await new Promise((resolve, reject) => {
-      cloudinary.uploader.upload_stream({ folder: 'pushpo' }, (err, res) => {
-        if (err) reject(err);
-        else resolve(res);
-      }).end(buffer);
+      const uploadStream = cloudinary.uploader.upload_stream(
+        { folder: 'pushpo', resource_type: 'auto' },
+        (err, res) => {
+          if (err) reject(new Error(err.message));
+          else resolve(res);
+        }
+      );
+      uploadStream.end(buffer);
     });
 
     return NextResponse.json({ url: result.secure_url });

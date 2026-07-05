@@ -218,3 +218,9 @@ export function IconPen({ className }) {
     <svg className={className} viewBox="0 0 24 24" width="24" height="24" {...strokeProps}><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
   );
 }
+
+export function IconAlertCircle({ className }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" width="24" height="24" {...strokeProps}><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+  );
+}
