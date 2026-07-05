@@ -10,7 +10,7 @@ export const dynamic = 'force-dynamic';
 
 async function getData() {
   const [featured, latest, categories, books] = await Promise.all([
-    prisma.post.findMany({ where: { status: 'published', featured: true }, include: { category: true, _count: { select: { likes: true, comments: true } } }, orderBy: [{ featuredOrder: 'asc' }, { createdAt: 'desc' }], take: 4 }),
+    prisma.post.findMany({ where: { status: 'published', featured: true }, include: { category: true, _count: { select: { likes: true, comments: true } } }, orderBy: [{ featuredOrder: 'desc' }, { createdAt: 'desc' }], take: 4 }),
     prisma.post.findMany({ where: { status: 'published' }, include: { category: true, _count: { select: { likes: true, comments: true } } }, orderBy: { createdAt: 'desc' }, take: 9 }),
     prisma.category.findMany({ orderBy: { name: 'asc' } }),
     prisma.book.findMany({ include: { _count: { select: { posts: true } } }, orderBy: { createdAt: 'desc' }, take: 6 }),

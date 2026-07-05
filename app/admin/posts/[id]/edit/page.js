@@ -82,7 +82,7 @@ export default function EditPost() {
         </div>
         {form.featured && (
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">ফিচার্ড অর্ডার (১ = প্রথমে)</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1.5">ফিচার্ড অর্ডার (বড় নাম্বার = আগে দেখাবে)</label>
             <input type="number" min="0" max="99" value={form.featuredOrder} onChange={e => setForm(f => ({ ...f, featuredOrder: parseInt(e.target.value) || 0 }))} className="w-24 border-2 border-emerald-100 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400 transition text-sm" />
           </div>
         )}
