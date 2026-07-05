@@ -447,7 +447,7 @@ async function main() {
   ]);
 
   console.log('========================================');
-  console.log('  পুষ্প প্রকাশন — Seed সম্পূর্ণ!');
+  console.log('  পুষ্প — Seed সম্পূর্ণ!');
   console.log('========================================');
   console.log('  Admin: admin@portal.com / admin123');
   console.log('  Categories: 8টি');

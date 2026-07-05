@@ -11,7 +11,7 @@ export default function Header({ categories = [] }) {
   return (
     <header className="sticky top-0 z-50">
       <div className="bg-islamic-pattern text-white text-center py-2 px-4 text-xs md:text-sm font-light tracking-wide">
-        পুষ্প প্রকাশন — জ্ঞানের আলোয় আলোকিত পাঠক
+        পুষ্প — জ্ঞানের আলোয় আলোকিত পাঠক
         <span className="hidden md:inline ml-2 opacity-70">| {new Date().toLocaleDateString('bn-BD', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</span>
       </div>
 
