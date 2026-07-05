@@ -1,7 +1,12 @@
 import { NextResponse } from 'next/server';
 import { requireAdmin } from '@/lib/auth';
-import { writeFile, mkdir } from 'fs/promises';
-import path from 'path';
+import { v2 as cloudinary } from 'cloudinary';
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 export const POST = requireAdmin(async (req) => {
   try {
@@ -10,13 +15,14 @@ export const POST = requireAdmin(async (req) => {
     if (!file) return NextResponse.json({ error: 'No file' }, { status: 400 });
 
     const buffer = Buffer.from(await file.arrayBuffer());
-    const ext = file.name.split('.').pop();
-    const filename = Date.now() + '-' + Math.random().toString(36).slice(2) + '.' + ext;
-    const dir = path.join(process.cwd(), 'public', 'uploads');
-    await mkdir(dir, { recursive: true });
-    await writeFile(path.join(dir, filename), buffer);
+    const result = await new Promise((resolve, reject) => {
+      cloudinary.uploader.upload_stream({ folder: 'pushpo' }, (err, res) => {
+        if (err) reject(err);
+        else resolve(res);
+      }).end(buffer);
+    });
 
-    return NextResponse.json({ url: '/uploads/' + filename });
+    return NextResponse.json({ url: result.secure_url });
   } catch (e) {
     return NextResponse.json({ error: e.message }, { status: 500 });
   }
