@@ -36,7 +36,7 @@ export async function GET(req) {
 
 export const POST = requireAdmin(async (req) => {
   try {
-    const { title, content, excerpt, image, type, status, featured, categoryId, bookId } = await req.json();
+    const { title, content, excerpt, image, type, status, featured, featuredOrder, categoryId, bookId } = await req.json();
     const slug = createSlug(title);
     const existing = await prisma.post.findUnique({ where: { slug } });
     const finalSlug = existing ? slug + '-' + Date.now() : slug;
@@ -44,7 +44,7 @@ export const POST = requireAdmin(async (req) => {
     const post = await prisma.post.create({
       data: {
         title, slug: finalSlug, content, excerpt: excerpt || stripHtml(content),
-        image, type: type || 'text', status: status || 'draft', featured: featured || false,
+        image, type: type || 'text', status: status || 'draft', featured: featured || false, featuredOrder: featuredOrder || 0,
         categoryId: categoryId ? parseInt(categoryId) : null,
         bookId: bookId ? parseInt(bookId) : null,
         adminId: req.admin.id,

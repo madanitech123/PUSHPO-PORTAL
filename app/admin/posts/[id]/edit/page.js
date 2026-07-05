@@ -6,7 +6,7 @@ import ImageUploader from '@/components/ImageUploader';
 export default function EditPost() {
   const router = useRouter();
   const { id } = useParams();
-  const [form, setForm] = useState({ title: '', content: '', image: '', type: 'text', status: 'draft', featured: false, categoryId: '', bookId: '' });
+  const [form, setForm] = useState({ title: '', content: '', image: '', type: 'text', status: 'draft', featured: false, featuredOrder: 0, categoryId: '', bookId: '' });
   const [categories, setCategories] = useState([]);
   const [books, setBooks] = useState([]);
   const [saving, setSaving] = useState(false);
@@ -22,7 +22,7 @@ export default function EditPost() {
       setBooks(bookData.books || []);
       if (postData.post) {
         const p = postData.post;
-        setForm({ title: p.title, content: p.content, image: p.image || '', type: p.type, status: p.status, featured: p.featured, categoryId: p.categoryId?.toString() || '', bookId: p.bookId?.toString() || '' });
+        setForm({ title: p.title, content: p.content, image: p.image || '', type: p.type, status: p.status, featured: p.featured, featuredOrder: p.featuredOrder || 0, categoryId: p.categoryId?.toString() || '', bookId: p.bookId?.toString() || '' });
       }
       setLoading(false);
     });
@@ -80,6 +80,12 @@ export default function EditPost() {
           <input type="checkbox" id="featured" checked={form.featured} onChange={e => setForm(f => ({ ...f, featured: e.target.checked }))} className="rounded text-emerald-600" />
           <label htmlFor="featured" className="text-sm text-gray-700">ফিচার্ড</label>
         </div>
+        {form.featured && (
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1.5">ফিচার্ড অর্ডার (১ = প্রথমে)</label>
+            <input type="number" min="0" max="99" value={form.featuredOrder} onChange={e => setForm(f => ({ ...f, featuredOrder: parseInt(e.target.value) || 0 }))} className="w-24 border-2 border-emerald-100 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400 transition text-sm" />
+          </div>
+        )}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1.5">ফিচার্ড ইমেজ</label>
           <ImageUploader current={form.image} onUpload={(url) => setForm(f => ({ ...f, image: url }))} />

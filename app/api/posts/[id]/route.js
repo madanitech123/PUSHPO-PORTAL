@@ -17,7 +17,7 @@ export async function GET(req, { params }) {
 export const PUT = requireAdmin(async (req, { params }) => {
   try {
     const id = parseInt(params.id);
-    const { title, content, excerpt, image, type, status, featured, categoryId, bookId } = await req.json();
+    const { title, content, excerpt, image, type, status, featured, featuredOrder, categoryId, bookId } = await req.json();
     const data = {};
     if (title !== undefined) data.title = title;
     if (content !== undefined) data.content = content;
@@ -26,6 +26,7 @@ export const PUT = requireAdmin(async (req, { params }) => {
     if (type !== undefined) data.type = type;
     if (status !== undefined) data.status = status;
     if (featured !== undefined) data.featured = featured;
+    if (featuredOrder !== undefined) data.featuredOrder = featuredOrder;
     if (categoryId !== undefined) data.categoryId = categoryId ? parseInt(categoryId) : null;
     if (bookId !== undefined) data.bookId = bookId ? parseInt(bookId) : null;
 
