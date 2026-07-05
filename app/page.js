@@ -6,6 +6,8 @@ import { IconHome, IconTag, IconBook, IconChevronRight } from '@/components/icon
 import Link from 'next/link';
 import prisma from '@/lib/prisma';
 
+export const dynamic = 'force-dynamic';
+
 async function getData() {
   const [featured, latest, categories, books] = await Promise.all([
     prisma.post.findMany({ where: { status: 'published', featured: true }, include: { category: true, _count: { select: { likes: true, comments: true } } }, orderBy: { createdAt: 'desc' }, take: 4 }),
