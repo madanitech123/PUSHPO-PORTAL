@@ -22,7 +22,7 @@ export default function EditPost() {
       setBooks(bookData.books || []);
       if (postData.post) {
         const p = postData.post;
-        setForm({ title: p.title, content: p.content, image: p.image || '', type: p.type, status: p.status, featured: p.featured, featuredOrder: p.featuredOrder || 0, categoryId: p.categoryId?.toString() || '', bookId: p.bookId?.toString() || '' });
+        setForm({ title: p.title, content: p.content, image: p.image || '', type: p.type, status: p.status, featured: p.featured, featuredOrder: p.featuredOrder || 99, categoryId: p.categoryId?.toString() || '', bookId: p.bookId?.toString() || '' });
       }
       setLoading(false);
     });
@@ -82,7 +82,7 @@ export default function EditPost() {
         </div>
         {form.featured && (
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">ফিচার্ড অর্ডার (বড় নাম্বার = আগে দেখাবে)</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1.5">ফিচার্ড অর্ডার (১ = প্রথম, ২ = দ্বিতীয়, ফাঁকা = শেষ)</label>
             <input type="number" min="0" max="99" value={form.featuredOrder} onChange={e => setForm(f => ({ ...f, featuredOrder: parseInt(e.target.value) || 0 }))} className="w-24 border-2 border-emerald-100 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400 transition text-sm" />
           </div>
         )}

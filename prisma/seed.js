@@ -143,7 +143,7 @@ async function main() {
         excerpt: 'প্রখ্যাত ইসলামী পণ্ডিত, লেখক ও গবেষক মাওলানা আবু তাহের মিসবাহ (আদীব হুজুর)-এর জীবন ও কর্ম সম্পর্কে বিস্তারিত পরিচিতি।',
         type: 'text',
         status: 'published',
-        featured: true,
+        featured: true, featuredOrder: 1,
         categoryId: categories[5].id,
         adminId: admin.id,
         views: 1560,
