@@ -2,24 +2,26 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import LikeButton from '@/components/LikeButton';
 import CommentSection from '@/components/CommentSection';
+import ViewTracker from '@/components/ViewTracker';
 import { IconTag, IconUser, IconCalendar, IconEye, IconBookOpen, IconChevronLeft, IconFile } from '@/components/icons';
 import Link from 'next/link';
 import prisma from '@/lib/prisma';
 import { notFound } from 'next/navigation';
 
 async function getPost(slug) {
-  const post = await prisma.post.findUnique({
-    where: { slug, status: 'published' },
-    include: { category: true, book: true, admin: { select: { name: true } } },
-  });
+  const [post, categories] = await Promise.all([
+    prisma.post.findUnique({
+      where: { slug, status: 'published' },
+      include: { category: true, book: true, admin: { select: { name: true } } },
+    }),
+    prisma.category.findMany({ orderBy: { name: 'asc' } }),
+  ]);
   if (!post) return null;
-  await prisma.post.update({ where: { id: post.id }, data: { views: { increment: 1 } } });
   const related = await prisma.post.findMany({
     where: { status: 'published', categoryId: post.categoryId, id: { not: post.id } },
     take: 4, orderBy: { createdAt: 'desc' },
     select: { title: true, slug: true, image: true, createdAt: true },
   });
-  const categories = await prisma.category.findMany({ orderBy: { name: 'asc' } });
   return { post, related, categories };
 }
 
@@ -31,6 +33,7 @@ export default async function PostPage({ params }) {
   return (
     <>
       <Header categories={categories} />
+      <ViewTracker postId={post.id} />
       <main className="container-wide py-8 page-enter">
         <article className="max-w-3xl mx-auto">
           <div className="flex items-center gap-3 mb-4 flex-wrap">
