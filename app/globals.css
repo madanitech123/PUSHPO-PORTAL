@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;500;600;700;800&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;500;600;700;800&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Galada&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -252,34 +252,32 @@ body {
   border-bottom: 3px solid #f59e0b;
 }
 
-.alkawsar-logo {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.2;
-  text-decoration: none;
-}
-
-.alkawsar-logo-arabic {
-  font-family: 'Noto Naskh Arabic', serif;
-  font-size: 0.75rem;
+.alkawsar-logo-small {
+  font-family: 'Noto Sans Bengali', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 500;
   color: #fcd34d;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.15em;
+  line-height: 1;
   text-transform: uppercase;
 }
 
-.alkawsar-logo-bn {
-  font-size: 1.25rem;
-  font-weight: 800;
+.alkawsar-logo-main {
+  font-family: 'Galada', 'Noto Sans Bengali', cursive;
+  font-size: 1.35rem;
+  font-weight: 400;
   color: white;
+  line-height: 1.25;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.2);
   letter-spacing: 0.02em;
 }
 
 @media (min-width: 768px) {
-  .alkawsar-logo-bn {
-    font-size: 1.5rem;
+  .alkawsar-logo-small {
+    font-size: 0.75rem;
   }
-  .alkawsar-logo-arabic {
-    font-size: 0.85rem;
+  .alkawsar-logo-main {
+    font-size: 1.65rem;
   }
 }
 

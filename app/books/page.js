@@ -24,7 +24,7 @@ export default async function BooksPage() {
             <IconBook className="w-6 h-6 text-white" />
           </div>
           <h1 className="text-2xl md:text-3xl font-bold gradient-text mb-1">বইয়ের ক্যাটালগ</h1>
-          <p className="text-gray-500 text-sm">মাসিক আল কলম পুষ্পর প্রকাশিত সমস্ত বই</p>
+          <p className="text-gray-500 text-sm">মাসিক আল-কলম পুষ্পর প্রকাশিত সমস্ত বই</p>
         </div>
         {books.length === 0 ? (
           <div className="text-center py-24 text-gray-400">

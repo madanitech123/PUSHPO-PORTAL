@@ -29,7 +29,7 @@ export default function AdminLogin() {
           <div className="w-14 h-14 gradient-bg rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-emerald-200/50">
             <IconFlower className="w-7 h-7 text-white" />
           </div>
-          <h1 className="text-2xl font-bold gradient-text">মাসিক আল কলম পুষ্প</h1>
+          <h1 className="text-2xl font-bold gradient-text">মাসিক আল-কলম পুষ্প</h1>
           <p className="text-sm text-gray-500 mt-1 font-light">অ্যাডমিন প্যানেল</p>
         </div>
         <form onSubmit={login} className="space-y-4">

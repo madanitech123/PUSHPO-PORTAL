@@ -32,7 +32,6 @@ export default function Header({ categories = [] }) {
       href: '/posts',
       dropdown: [
         { label: 'সব পোস্ট', href: '/posts' },
-        { label: 'বৈশিষ্ট্যযুক্ত', href: '/?featured=1' },
       ],
     },
     {
@@ -50,9 +49,9 @@ export default function Header({ categories = [] }) {
       <div className="alkawsar-topbar">
         <div className="container-wide">
           <div className="flex items-center justify-between py-2.5">
-            <Link href="/" className="alkawsar-logo">
-              <span className="alkawsar-logo-arabic">আল কলম</span>
-              <span className="alkawsar-logo-bn">মাসিক আল কলম পুষ্প</span>
+            <Link href="/" className="flex flex-col no-underline">
+              <span className="alkawsar-logo-small">মাসিক</span>
+              <span className="alkawsar-logo-main">আল-কলম পুষ্প</span>
             </Link>
             <div className="hidden md:flex items-center gap-3 text-sm text-emerald-100">
               <span className="opacity-80">বর্ষ: ১, সংখ্যা: ০১</span>

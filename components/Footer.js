@@ -10,7 +10,7 @@ export default function Footer() {
               <div className="w-9 h-9 bg-white/15 rounded-xl flex items-center justify-center">
                 <IconFlower className="w-5 h-5 text-white" />
               </div>
-              <span className="text-xl font-bold">মাসিক আল কলম পুষ্প</span>
+              <span className="text-xl font-bold">মাসিক আল-কলম পুষ্প</span>
             </div>
             <p className="text-emerald-100/80 text-sm leading-relaxed max-w-md">
               জ্ঞানের আলোয় আলোকিত পাঠক। ইসলামিক জ্ঞান, সাহিত্য ও সংস্কৃতি বিকাশে আমাদের
@@ -58,7 +58,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="border-t border-white/6 py-4 text-center text-xs text-emerald-100/50">
-        &copy; {new Date().getFullYear()} মাসিক আল কলম পুষ্প
+        &copy; {new Date().getFullYear()} মাসিক আল-কলম পুষ্প
       </div>
     </footer>
   );

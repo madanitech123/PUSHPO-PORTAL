@@ -93,7 +93,7 @@ export default async function HomePage() {
             <div className="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center mx-auto mb-4">
               <IconBook className="w-8 h-8 text-white" />
             </div>
-            <h1 className="text-2xl font-bold gradient-text mb-2">মাসিক আল কলম পুষ্প-এ স্বাগতম</h1>
+            <h1 className="text-2xl font-bold gradient-text mb-2">মাসিক আল-কলম পুষ্প-এ স্বাগতম</h1>
             <p className="text-gray-500 text-sm">শীঘ্রই নতুন কন্টেন্ট আসছে</p>
           </div>
         )}

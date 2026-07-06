@@ -25,7 +25,7 @@ export default function AdminSidebar({ admin }) {
           <div className="w-8 h-8 gradient-bg rounded-xl flex items-center justify-center text-white shadow-sm">
             <IconFlower className="w-4 h-4" />
           </div>
-          <span className="gradient-text">মাসিক আল কলম পুষ্প</span>
+          <span className="gradient-text">মাসিক আল-কলম পুষ্প</span>
         </Link>
         <div className="flex items-center gap-1.5 mt-2">
           <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>
