@@ -129,6 +129,12 @@ export function IconExternal({ className }) {
   );
 }
 
+export function IconChevronDown({ className }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" width="24" height="24" {...strokeProps}><polyline points="6 9 12 15 18 9"/></svg>
+  );
+}
+
 export function IconChevronRight({ className }) {
   return (
     <svg className={className} viewBox="0 0 24 24" width="24" height="24" {...strokeProps}><polyline points="9 18 15 12 9 6"/></svg>

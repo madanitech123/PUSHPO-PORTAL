@@ -28,7 +28,7 @@ export default function AdminDashboard() {
         <IconDashboard className="w-6 h-6 text-emerald-600" />
         <h1 className="text-xl font-bold text-gray-800">ড্যাশবোর্ড</h1>
       </div>
-      <p className="text-gray-500 text-sm mb-8">পুষ্প অ্যাডমিন প্যানেল</p>
+      <p className="text-gray-500 text-sm mb-8">মাসিক আল কলম পুষ্প অ্যাডমিন প্যানেল</p>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
         {cards.map((card, i) => (
           <div key={i} className="glass-card p-5">
